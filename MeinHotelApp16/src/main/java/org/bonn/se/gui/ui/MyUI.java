@@ -49,7 +49,6 @@ public class MyUI extends UI {
         navi.addView(Views.LOGIN, LoginView.class);
         
         UI.getCurrent().getNavigator().navigateTo(Views.LOGIN)  ;
-        //UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
