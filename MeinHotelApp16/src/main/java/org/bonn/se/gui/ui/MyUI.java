@@ -29,13 +29,12 @@ import org.bonn.se.gui.views.LoginView;
 import org.bonn.se.gui.views.MainView;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.process.control.HotelSearch;
+import org.bonn.se.services.util.Views;
 //import org.bonn.se.services.util.Views;
-
 /**
  *
  */
 @Theme("mytheme")
-//@Widgetset("org.bonn.se.meinhotelapp.ui.MyAppWidgetset")
 @Widgetset("org.bonn.se.meinhotelapp16.MyAppWidgetset")
 @Title("MeinHotel")
 public class MyUI extends UI {
@@ -46,9 +45,10 @@ public class MyUI extends UI {
         
         Navigator navi = new Navigator( this , this );
         
-        navi.addView("main", MainView.class);
-        navi.addView("login", LoginView.class);
-            
+        navi.addView(Views.MAIN, MainView.class);
+        navi.addView(Views.LOGIN, LoginView.class);
+        
+        UI.getCurrent().getNavigator().navigateTo(Views.LOGIN)  ;
         //UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
     }
 
