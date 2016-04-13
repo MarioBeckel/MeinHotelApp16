@@ -56,7 +56,20 @@ public class MainView extends VerticalLayout implements View{
         setComponentAlignment(horizontalLayout, Alignment.MIDDLE_CENTER);
         final BeanContainer<Integer, Hotel> data = new BeanContainer<Integer, Hotel>(Hotel.class);
         data.setBeanIdProperty("id");
+        
         final Table table = new Table("Treffer", data);
+        //caption with HTML elements!!!
+        table.setCaptionAsHtml(true);
+        //change column header
+        table.setColumnHeader("id", "ID");
+        table.setColumnHeader("beschreibung", "Beschreibung");
+        table.setColumnHeader("name", "Name");
+        table.setColumnHeader("ort", "Ort");
+        // Ausrichtung der Tabellenueberschrift
+        table.setColumnAlignments(Table.Align.CENTER, Table.Align.CENTER, Table.Align.CENTER, Table.Align.CENTER  );
+        
+        
+        
         table.setSizeFull();
         table.setSelectable(true);
         final Button bucheButton = new Button("Buche");
