@@ -7,7 +7,14 @@ package org.bonn.se.gui.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.FontAwesome;
+import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.PasswordField;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -17,9 +24,47 @@ import com.vaadin.ui.VerticalLayout;
 public class LoginView extends VerticalLayout implements View {
 
     public void setUp() {
-         Label label = new Label("Hello Login");
-         this.addComponent(label);
-    }
+        // Label label = new Label("Hello Login");
+        // this.addComponent(label);
+
+        this.setSizeFull();
+        
+        final TextField userLogin = new TextField();
+        userLogin.setCaption("UserID: ");
+        
+        final PasswordField passwordField = new PasswordField();
+        passwordField.setCaption("Passwort: ");
+        
+        VerticalLayout layout = new VerticalLayout();
+        layout.addComponent(userLogin);
+        layout.addComponent(passwordField);
+        //Leerzeile definieren
+        Label label = new Label( "&nbsp;" , ContentMode.HTML);
+        layout.addComponent(label);
+        
+        Panel panel = new Panel( "Bitte Login-Daten angeben: ");
+        panel.addStyleName("login");
+        
+        this.addComponent(panel);
+        this.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
+        
+        panel.setContent( layout );
+        
+        Button buttonLogin = new Button("Login", FontAwesome.SEARCH);
+        layout.addComponent(buttonLogin);
+        layout.setComponentAlignment(buttonLogin, Alignment.MIDDLE_CENTER);
+        
+        panel.setSizeUndefined();
+        
+        buttonLogin.addClickListener( new Button.ClickListener() {
+
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
+    };
      
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
