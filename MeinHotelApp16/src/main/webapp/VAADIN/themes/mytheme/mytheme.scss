@@ -52,6 +52,12 @@ $v-selection-overlay-padding-horizontal: 0;
 $v-selection-overlay-padding-vertical: 6px;
 $v-selection-item-border-radius: 0;
 
+.login  .v-panel-content { background: #B2B2B2;
+                    border: 0px #fff;
+                    padding: 10px;
+                    font-family: Verdana;
+                    color: white
+                  } 
 
 @import "../valo/valo.scss";
 
