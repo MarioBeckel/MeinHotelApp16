@@ -12,10 +12,15 @@ import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bonn.se.process.control.LoginControl;
+import org.bonn.se.process.control.exceptions.NoSuchUserOrPassword;
 
 /**
  *
@@ -63,6 +68,14 @@ public class LoginView extends VerticalLayout implements View {
                 String login = userLogin.getValue();
                 String password = passwordField.getValue();
                 
+                try {
+                    LoginControl.checkAuthentification(login, password);
+                } catch (NoSuchUserOrPassword ex) {
+                   
+                    Notification.show("Fehler", "Login oder Password falsch", Notification.Type.ERROR_MESSAGE);
+                    userLogin.setValue("");
+                    passwordField.setValue("");
+                }
             }
         });
         
