@@ -60,7 +60,9 @@ public class LoginView extends VerticalLayout implements View {
 
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                String login = userLogin.getValue();
+                String password = passwordField.getValue();
+                
             }
         });
         
