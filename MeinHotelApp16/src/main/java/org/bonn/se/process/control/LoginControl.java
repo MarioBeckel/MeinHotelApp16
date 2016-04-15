@@ -17,7 +17,7 @@ public class LoginControl {
     
     public static void checkAuthentification( String login, String password ) throws NoSuchUserOrPassword {
         
-        // DB-Zugriff
+        // DB-Zugriff (TODO)
         
         // Der Benutzer ist vorhanden
         // UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
