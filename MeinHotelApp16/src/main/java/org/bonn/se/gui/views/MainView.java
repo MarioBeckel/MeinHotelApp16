@@ -19,11 +19,14 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import java.util.List;
 import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.Hotel;
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
+import org.bonn.se.services.util.Roles;
 
 /**
  *
@@ -46,7 +49,11 @@ public class MainView extends VerticalLayout implements View{
         Button button = new Button("Suche ", FontAwesome.SEARCH);
         setSpacing(true);
         HorizontalLayout horizontalLayout = new HorizontalLayout();
-        Label labelText = new Label("Gebe Ort ein: ");
+        
+        User user = (User) UI.getCurrent().getSession().getAttribute( Roles.CURRENT_USER );
+        
+        Label labelText = new Label( user.getVorname() + ", gebe den Ort ein: ");
+        //Label labelText = new Label( user.getVorname() + ", gebe den Ort ein: ");
         horizontalLayout.addComponent(labelText);
         horizontalLayout.setComponentAlignment(labelText, Alignment.MIDDLE_CENTER);
         horizontalLayout.addComponent(textField);
