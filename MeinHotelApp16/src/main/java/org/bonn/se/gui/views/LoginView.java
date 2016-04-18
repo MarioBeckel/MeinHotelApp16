@@ -20,6 +20,7 @@ import com.vaadin.ui.VerticalLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bonn.se.process.control.LoginControl;
+import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.process.control.exceptions.NoSuchUserOrPassword;
 
 /**
@@ -75,6 +76,12 @@ public class LoginView extends VerticalLayout implements View {
                     Notification.show("Fehler", "Login oder Password falsch", Notification.Type.ERROR_MESSAGE);
                     userLogin.setValue("");
                     passwordField.setValue("");
+                } catch (DatabaseException ex) {
+                    Notification.show("DB-Fehler", ex.getReason(), Notification.Type.ERROR_MESSAGE);
+                    userLogin.setValue("");
+                    passwordField.setValue("");
+
+                    //Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
