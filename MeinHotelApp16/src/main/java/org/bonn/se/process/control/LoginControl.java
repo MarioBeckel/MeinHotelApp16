@@ -42,6 +42,7 @@ public class LoginControl {
 
         } catch (SQLException ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DatabaseException( " Fehler im SQL-Befehl! Bitte den Programmierer benarchitigen" );
         }
          
         User user = null;
