@@ -28,13 +28,15 @@ public class JDBCConnection {
     
     private static JDBCConnection connection = null;
     
-    private String url = "jdbc:postgresql://dumbo.inf.fh-bonn-rhein-sieg.de/emeiza2s";
+   // private String url = "jdbc:postgresql://dumbo.inf.fh-bonn-rhein-sieg.de/mmoers2s";
+    private String url = "jdbc:postgresql://localhost//phppgadmin/mbeck12s";
+    
     
     private Connection conn;
     
-    private String login = "emeiza2s";
+    private String login = "mmoers2s";
     
-    private String password = "emeiza2s";
+    private String password = "mmoers2s";
     
     public static JDBCConnection getInstance() throws DatabaseException {
         
@@ -50,7 +52,7 @@ public class JDBCConnection {
     }
     
     public void initConnection() throws DatabaseException  {
-        try {
+        try { 
             DriverManager.registerDriver( new org.postgresql.Driver() );
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,12 +63,14 @@ public class JDBCConnection {
     public void openConnection() throws DatabaseException{
        
         try {
+//            if( this.conn.isClosed()){
+//                 return; 
+//        }
     
             Properties props = new Properties();
-            props.setProperty("user", "emeiza2s");
-            props.setProperty("password", "emeiza2s");
-        
-        
+            props.setProperty("user", "mmoers2s");
+            props.setProperty("password", "mmoers2s");
+            
             this.conn = DriverManager.getConnection(this.url, props);
          } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
