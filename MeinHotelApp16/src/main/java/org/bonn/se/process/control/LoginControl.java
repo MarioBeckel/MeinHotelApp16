@@ -68,5 +68,11 @@ public class LoginControl {
         UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
         
     } 
+
+    public static void logoutUser() {
+         UI.getCurrent().getPage().setLocation("/MeinHotelApp16");
+        UI.getCurrent().getSession().close();
+    
+    }
     
 }
