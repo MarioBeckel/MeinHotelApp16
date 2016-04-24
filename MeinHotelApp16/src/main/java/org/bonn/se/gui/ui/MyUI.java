@@ -14,6 +14,7 @@ import com.vaadin.data.util.BeanContainer;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -40,6 +41,8 @@ public class MyUI extends UI {
     
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        
+        System.out.println("LOG: neues UI-Objekt erzeugt. Session-ID: " + VaadinSession.getCurrent().toString() );
         
         Navigator navi = new Navigator( this , this );
         
