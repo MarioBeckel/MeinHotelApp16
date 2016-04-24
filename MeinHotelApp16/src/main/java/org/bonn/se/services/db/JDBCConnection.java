@@ -28,8 +28,8 @@ public class JDBCConnection {
     
    private static JDBCConnection connection = null;
     
-   private String url = "jdbc:postgresql://dumbo.inf.fh-bonn-rhein-sieg.de/mmoers2s";
-   // private String url = "jdbc:postgresql://localhost//phppgadmin/mbeck12s";
+    private String url = "jdbc:postgresql://dumbo.inf.fh-bonn-rhein-sieg.de/mmoers2s";
+   // private String url = "jdbc:postgresql://localhost//phppgadmin/Mario";
     
     
     private Connection conn;
