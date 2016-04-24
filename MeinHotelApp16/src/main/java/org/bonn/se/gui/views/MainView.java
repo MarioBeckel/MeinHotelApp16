@@ -5,12 +5,14 @@
  */
 package org.bonn.se.gui.views;
 
+import org.bonn.se.gui.components.TopPanel;
 import com.vaadin.data.util.BeanContainer;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -27,6 +29,7 @@ import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
 import org.bonn.se.services.util.Roles;
+import org.bonn.se.services.util.Views;
 
 /**
  *
@@ -38,10 +41,21 @@ public class MainView extends VerticalLayout implements View{
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        this.setUp();
+        
+        User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+        
+        if ( user == null ) {
+            UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+        } else {
+            this.setUp();
+        }
     }
 
-    public void setUp() {
+    public void setUp() { 
+        
+        this.addComponent( new TopPanel());
+        
+        this.addComponent( new Label("<hr />", ContentMode.HTML));
 
         setMargin(true);
 
@@ -52,7 +66,12 @@ public class MainView extends VerticalLayout implements View{
         
         User user = (User) UI.getCurrent().getSession().getAttribute( Roles.CURRENT_USER );
         
-        Label labelText = new Label( user.getVorname() + ", gebe den Ort ein: ");
+        String vorname = null;
+        if( user != null ) {
+            vorname = user.getVorname();
+        }
+        
+        Label labelText = new Label( vorname + ", gebe den Ort ein: ");
         horizontalLayout.addComponent(labelText);
         horizontalLayout.setComponentAlignment(labelText, Alignment.MIDDLE_CENTER);
         horizontalLayout.addComponent(textField);
