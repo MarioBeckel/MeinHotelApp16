@@ -34,15 +34,15 @@ public class LoginControl {
             Statement statement = JDBCConnection.getInstance().getStatement();
             
             set = statement.executeQuery( "SELECT *"
-                    + "FROM realm.user"
-                    + "WHERE user.login = \'" + login + "\'"
-                    + "AND realm.user.password = \'" + password + "\'");
+                    + " FROM realm.user"
+                    + " WHERE realm.user.login = \'" + login + "\'"
+                    + " AND realm.user.password = \'" + password + "\'");
             
-            // UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
+           // UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 
         } catch (SQLException ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
-            throw new DatabaseException( " Fehler im SQL-Befehl! Bitte den Programmierer benarchitigen" );
+            throw new DatabaseException( " Fehler im SQL-Befehl! Bitte den Programmierer benachrichtigen" );
         }
          
         User user = null;
