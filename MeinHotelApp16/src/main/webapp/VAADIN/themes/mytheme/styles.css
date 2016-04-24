@@ -6,6 +6,20 @@
 	color: white;
 }
 
+.mytitle {
+	font-family: Verdana;
+	color: #D44E7D;
+	padding: 10px;
+	font-size: 24px;
+}
+
+.logdedLabel {
+	font-family: Verdana;
+	color: #D44E7D;
+	padding: 10px;
+	font-size: 12px;
+}
+
 /**
  * Checks if a list contains a certain value.
  * 
