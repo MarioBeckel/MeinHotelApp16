@@ -30,7 +30,6 @@ import org.bonn.se.gui.views.MainView;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.process.control.HotelSearch;
 import org.bonn.se.services.util.Views;
-//import org.bonn.se.services.util.Views;
 /**
  *
  */
