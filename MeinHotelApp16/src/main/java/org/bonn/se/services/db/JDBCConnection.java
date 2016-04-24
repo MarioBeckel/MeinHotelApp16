@@ -26,10 +26,10 @@ public class JDBCConnection {
 //        }
 //    }
     
-    private static JDBCConnection connection = null;
+   private static JDBCConnection connection = null;
     
-   // private String url = "jdbc:postgresql://dumbo.inf.fh-bonn-rhein-sieg.de/mmoers2s";
-    private String url = "jdbc:postgresql://localhost//phppgadmin/mbeck12s";
+   private String url = "jdbc:postgresql://dumbo.inf.fh-bonn-rhein-sieg.de/mmoers2s";
+   // private String url = "jdbc:postgresql://localhost//phppgadmin/mbeck12s";
     
     
     private Connection conn;
@@ -48,7 +48,7 @@ public class JDBCConnection {
     
     private JDBCConnection() throws DatabaseException {
         this.initConnection();
-        
+         
     }
     
     public void initConnection() throws DatabaseException  {
@@ -63,9 +63,6 @@ public class JDBCConnection {
     public void openConnection() throws DatabaseException{
        
         try {
-//            if( this.conn.isClosed()){
-//                 return; 
-//        }
     
             Properties props = new Properties();
             props.setProperty("user", "mmoers2s");
