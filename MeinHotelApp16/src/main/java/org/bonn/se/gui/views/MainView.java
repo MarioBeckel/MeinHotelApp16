@@ -53,7 +53,6 @@ public class MainView extends VerticalLayout implements View{
         User user = (User) UI.getCurrent().getSession().getAttribute( Roles.CURRENT_USER );
         
         Label labelText = new Label( user.getVorname() + ", gebe den Ort ein: ");
-        //Label labelText = new Label( user.getVorname() + ", gebe den Ort ein: ");
         horizontalLayout.addComponent(labelText);
         horizontalLayout.setComponentAlignment(labelText, Alignment.MIDDLE_CENTER);
         horizontalLayout.addComponent(textField);
