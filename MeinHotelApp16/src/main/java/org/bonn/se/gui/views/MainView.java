@@ -42,7 +42,9 @@ public class MainView extends VerticalLayout implements View{
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         
-        User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+//        User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+        
+        User user = ((MyUI) UI.getCurrent()).getUser();
         
         if ( user == null ) {
             UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
@@ -64,7 +66,9 @@ public class MainView extends VerticalLayout implements View{
         setSpacing(true);
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         
-        User user = (User) UI.getCurrent().getSession().getAttribute( Roles.CURRENT_USER );
+//        User user = (User) UI.getCurrent().getSession().getAttribute( Roles.CURRENT_USER );
+        
+        User user = ((MyUI) UI.getCurrent()).getUser();
         
         String vorname = null;
         if( user != null ) {
@@ -125,7 +129,9 @@ public class MainView extends VerticalLayout implements View{
                 } else {
                     addComponent(table);
                     MainView.this.anzahlSuche++;
-                    table.setCaption("Treffer f\u00fcr " + ort + " (Anzahl der Suche: " + MainView .this.anzahlSuche + ")");
+                    table.setCaption("Treffer f\u00fcr " + ort + " (Anzahl der Suche: " + MainView .this.anzahlSuche + ") "
+                    + ((User) ((MyUI) UI.getCurrent()).getUser()).getVorname() );
+//                            VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER) ).getVorname());
                     List<Hotel> liste = HotelSearch.getInstance().getHotelByOrt(ort);
                     data.removeAllItems();
                     data.addAll(liste);
