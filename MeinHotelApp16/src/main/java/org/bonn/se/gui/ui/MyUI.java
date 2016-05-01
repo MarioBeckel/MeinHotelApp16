@@ -1,5 +1,6 @@
 package org.bonn.se.gui.ui;
 //Komentar
+import com.vaadin.annotations.PreserveOnRefresh;
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -29,6 +30,7 @@ import java.util.List;
 import org.bonn.se.gui.views.LoginView;
 import org.bonn.se.gui.views.MainView;
 import org.bonn.se.model.objects.dto.Hotel;
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
 import org.bonn.se.services.util.Views;
 /**
@@ -37,7 +39,18 @@ import org.bonn.se.services.util.Views;
 @Theme("mytheme")
 @Widgetset("org.bonn.se.meinhotelapp16.MyAppWidgetset")
 @Title("MeinHotel")
+@PreserveOnRefresh 
 public class MyUI extends UI {
+    
+    private User user = null;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -52,6 +65,12 @@ public class MyUI extends UI {
         UI.getCurrent().getNavigator().navigateTo(Views.LOGIN)  ;
     }
 
+    public MyUI getMyUI() {
+        return (MyUI) UI.getCurrent();
+    }
+    
+    
+    
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {
