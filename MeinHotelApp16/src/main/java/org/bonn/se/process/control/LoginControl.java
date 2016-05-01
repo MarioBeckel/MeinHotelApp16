@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.process.control.exceptions.NoSuchUserOrPassword;
@@ -62,16 +63,19 @@ public class LoginControl {
             
             JDBCConnection.getInstance().closeConnection();
         }
-        VaadinSession session = UI.getCurrent().getSession();
-        session.setAttribute( Roles.CURRENT_USER, user );
+//        VaadinSession session = UI.getCurrent().getSession();
+//        session.setAttribute( Roles.CURRENT_USER, user );
+        
+        ((MyUI) UI.getCurrent()).setUser(user);
         
         UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
         
     } 
 
     public static void logoutUser() {
-         UI.getCurrent().getPage().setLocation("/MeinHotelApp16");
-        UI.getCurrent().getSession().close();
+        UI.getCurrent().close();
+        UI.getCurrent().getPage().setLocation("/MeinHotelApp16");
+        // UI.getCurrent().getSession().close();
     
     }
     
