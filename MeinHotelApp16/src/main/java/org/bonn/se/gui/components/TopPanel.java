@@ -17,6 +17,7 @@ import com.vaadin.ui.UI;
 import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
+import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.services.util.Roles;
 
 /**
@@ -25,7 +26,7 @@ import org.bonn.se.services.util.Roles;
  */
 public class TopPanel extends HorizontalLayout {
 
-    public TopPanel() {
+    public TopPanel() throws DatabaseException {
         
         this.setSizeFull();
         
@@ -68,9 +69,21 @@ public class TopPanel extends HorizontalLayout {
         });
         
         // Stornierung von Reisen (PowerUser) - TODO
-        item1.addItem("Cancel", FontAwesome.UNLINK, null);
         
-        horLayout.addComponent(bar);
+        if ( user.hasRole (Roles.POWER_USER) ) {
+            
+        item1.addItem("Cancel", FontAwesome.UNLINK, new MenuBar.Command() {
+
+            @Override
+            public void menuSelected(MenuItem selectedItem) {
+                // TODO ein Window wird geoeffnet um Buchnungen anzuzeigen und ggf. zu stornieren
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                
+            }
+        } );
+        
+        }
+        horLayout.addComponent(bar); 
         this.addComponent(horLayout);
         this.setComponentAlignment(horLayout, Alignment.TOP_RIGHT);
 
