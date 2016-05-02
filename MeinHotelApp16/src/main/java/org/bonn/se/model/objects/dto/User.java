@@ -2,6 +2,7 @@ package org.bonn.se.model.objects.dto;
 
 import java.io.Serializable;
 import java.util.List;
+import org.bonn.se.modell.dao.RoleDAO;
 //import org.bonn.se.model.dao.RoleDAO;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 //import org.lodshop.se.model.dao.RoleDAO;
@@ -13,7 +14,7 @@ public class User implements Serializable {
     
     private String vorname = null;
     private String login = null;
-//    private List<Role> roles = null;
+    private List<Role> roles = null;
 
     public String getVorname() {
         return vorname;
@@ -31,7 +32,7 @@ public class User implements Serializable {
         this.login = login;
     }
 
-/*    public boolean hasRole(String role) throws DatabaseException {
+    public boolean hasRole(String role) throws DatabaseException {
         
         //Lazy Load
         
@@ -48,9 +49,9 @@ public class User implements Serializable {
 
     private void getRoles() throws DatabaseException {
        
-        this.roles =  RoleDAO.getInstance().getRolesForUser(this);
+        this.roles =  RoleDAO.getInstance().getRoleForUser(this);
         
     }
-*/    
-    
+
+   
 }
