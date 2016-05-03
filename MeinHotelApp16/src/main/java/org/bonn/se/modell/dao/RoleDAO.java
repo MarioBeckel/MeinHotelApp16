@@ -22,7 +22,7 @@ import org.bonn.se.services.db.JDBCConnection;
  *
  * @author Mario<Mario@Mario-PC>
  */
-public class RoleDAO {
+public class RoleDAO extends AbstractDAO {
     
     public static RoleDAO dao = null;
     
@@ -37,20 +37,15 @@ public class RoleDAO {
     }
     
     public List<Role> getRoleForUser (User user) {
-        Statement statement = null;
-        
-        try{
-            statement = JDBCConnection.getInstance().getStatement();
-        } catch (DatabaseException ex) {
-            return null;
-        }
+        Statement statement = this.getStatement();
          
         ResultSet rs = null;
         
         try {
-            rs = statement.executeQuery("SELECT ' "
-                + "FROM realm.user_to_role "
-                + "WHERE realm.user_to_role.login = \'" + user.getLogin() + "\'");
+            rs = statement.executeQuery(
+                    "SELECT * "
+                + "FROM realm.user "
+                + "WHERE realm.user .login = \'" + user.getLogin() + "\'");
         } catch (SQLException ex) {
             //Logger.getLogger(LoginControl.class.getName()),log(Level.SEVERE, null, ex); 
             Logger.getLogger(RoleDAO.class.getName()).log(Level.SEVERE, null, ex);
