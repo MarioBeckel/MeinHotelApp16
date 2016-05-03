@@ -24,10 +24,13 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
+import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.services.util.Roles;
 import org.bonn.se.services.util.Views;
 
@@ -49,11 +52,15 @@ public class MainView extends VerticalLayout implements View{
         if ( user == null ) {
             UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
         } else {
-            this.setUp();
+            try {
+                this.setUp();
+            } catch (DatabaseException ex) {
+                Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    public void setUp() { 
+    public void setUp() throws DatabaseException { 
         
         this.addComponent( new TopPanel());
         
