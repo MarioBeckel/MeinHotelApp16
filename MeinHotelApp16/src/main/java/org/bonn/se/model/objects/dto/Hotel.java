@@ -23,6 +23,10 @@ public class Hotel implements java.io.Serializable{
         this.beschreibung = beschreibung;
     }
 
+    public Hotel() {
+
+    }
+
     public int getId() {
         return id;
     }
