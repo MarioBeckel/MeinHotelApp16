@@ -15,6 +15,7 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.UI;
 import org.bonn.se.gui.ui.MyUI;
+import org.bonn.se.gui.windows.ListBookingWindow;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
 import org.bonn.se.process.control.exceptions.DatabaseException;
@@ -77,8 +78,8 @@ public class TopPanel extends HorizontalLayout {
             @Override
             public void menuSelected(MenuItem selectedItem) {
                 // TODO ein Window wird geoeffnet um Buchnungen anzuzeigen und ggf. zu stornieren
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                
+               ListBookingWindow window = new ListBookingWindow();
+               UI.getCurrent().addWindow( window );
             }
         } );
         
