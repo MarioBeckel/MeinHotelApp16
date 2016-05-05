@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bonn.se.gui.ui.MyUI;
+import org.bonn.se.gui.windows.BookingWindow;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
@@ -116,6 +117,9 @@ public class MainView extends VerticalLayout implements View{
                     return;
                 } else {
                     System.out.println("Hotel selektiert " + MainView.this.hotelSelektiert.getName());
+                    
+                    BookingWindow window = new BookingWindow( MainView.this.hotelSelektiert);
+                    UI.getCurrent().addWindow(window);
                 }
             }
         });
@@ -124,7 +128,9 @@ public class MainView extends VerticalLayout implements View{
             public void itemClick(ItemClickEvent event) {
                 System.out.println("Zeile selektiert: " + event.getItemId().toString());
                 BeanItem<Hotel> hotelBean = data.getItem(event.getItemId());
-                Hotel hotelSelektiert = hotelBean.getBean();
+                
+                //abspeichern des aktuellen Hotels
+                hotelSelektiert = hotelBean.getBean();
             }
         });
         button.addClickListener(new Button.ClickListener() {
@@ -146,7 +152,7 @@ public class MainView extends VerticalLayout implements View{
                     addComponent(bucheButton);
                     setComponentAlignment(bucheButton, Alignment.MIDDLE_CENTER);
                 }
-            }
+            } 
         });
     }
     
